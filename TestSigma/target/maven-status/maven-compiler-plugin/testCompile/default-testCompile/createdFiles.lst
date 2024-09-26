@@ -1,0 +1,5 @@
+com\testsigma\qa\base\Base.class
+com\testsigma\qa\base\Hooks.class
+com\testsigma\qa\test\HomePage.class
+com\testsigma\qa\test\Login.class
+com\testsigma\qa\test\SignUp.class

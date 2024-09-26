@@ -1,0 +1,115 @@
+package com.ninjaproject.qa.test;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.ninjaselenium.qa.base.Base;
+import com.ninjaselenium.qa.pages.AllenLoginPage;
+
+public class AllenDigitalLogin extends Base {
+
+	public AllenDigitalLogin() {
+
+		super();
+	}
+
+	WebDriver driver;
+
+	@AfterMethod
+	public void tearDown() {
+		driver.close();
+
+	}
+
+	@BeforeMethod
+	public void setup() {
+
+		driver = initilizeBrowserAndOpenApplicationURL(prop.getProperty("browserName"));
+		driver.get(prop.getProperty("allenUrl"));
+
+	}
+
+	@Test
+	public void verifyWithValidCredentials() {
+
+		AllenLoginPage alp = new AllenLoginPage(driver);
+		alp.enterEnrollmentNo(prop.getProperty("enrollmentNo"));
+		alp.enterPassword(prop.getProperty("password"));
+		alp.enterCaptcha(prop.getProperty("captcha"));
+		alp.clickOnLoginButton();
+		System.out.println("Getting module name as: " + alp.retrieveLandingPageModule());
+		String greeting = alp.retrieveGreetingMessage();
+		System.out.println("Greeting Message:- " + greeting);
+		boolean logo = driver.findElement(By.xpath("//a[@class='navbar-brand main-logo mr-sm-3 ml-4 ml-sm-0'] //img"))
+				.isDisplayed();
+		Assert.assertTrue(logo, "Logo is not visible");
+		WebElement retriveStreamName = driver.findElement(By.xpath("//div[@class='stream-name']"));
+		String streamName = retriveStreamName.getText();
+		System.out.println("Stream:- "+streamName);
+		String title = retriveStreamName.getAttribute("title");
+		if (title.equals("PRE-NURTURE")) {
+		    System.out.println("Stream:- " + streamName);
+		} else if (title.equals("PRE-MEDICAL")) {
+		    System.out.println("Stream:- " + streamName);
+		} else {
+		    System.out.println("Stream name does not match the expected value.");
+		}
+		String studentName = driver.findElement(By.xpath("//a[@class='nav-link dropdown-toggle']")).getText();
+		System.out.println("Student Name: -"+studentName);
+		driver.findElement(By.xpath("//a[@class='nav-link dropdown-toggle']")).click();
+//		driver.findElement(By.name("user")).sendKeys("1000606939");
+//		driver.findElement(By.name("pass")).sendKeys("dstd#123");
+//		driver.findElement(By.id("reg-code")).sendKeys("susr");
+//		driver.findElement(By.id("submit")).click();
+//		WebElement getTitle = driver.findElement(By.xpath(
+//				"//nav[@class='navbar navbar-expand-sm navbar-dark dash-head p-0 ng-star-inserted'] //span[contains(text(), 'Schedule')]"));
+//		System.out.println("Getting module name as: " + getTitle.getText());
+
+		driver.findElement(By.xpath("//span[contains(text(),'Test and Reports')]")).click();
+		List<WebElement> allStartStatus = driver
+				.findElements(By.xpath("//a[@class='btn test-active ng-scope starttest']"));
+		//driver.findElement(By.xpath("//a[@class='btn test-active ng-scope starttest']")).click();
+		List<WebElement> allMissedStatus = driver.findElements(By.xpath("//a[@class='test-missed']"));
+		List<WebElement> allResumeStatus = driver.findElements(By.xpath("//div[@class='resume_button']"));
+		System.out.println("Count of Active Test:- " + allStartStatus.size());
+		System.out.println("Count of Missed Test:- " + allMissedStatus.size());
+		System.out.println("Count of Resume Test:- " + allResumeStatus.size());
+
+		for (WebElement startButton : allStartStatus) {// enhanced loop
+			if (startButton.isDisplayed() && startButton.isEnabled()) {
+				//startButton.click();
+				System.out.println("Clicked on 'Start Test' button");
+				break;
+			} else {
+				System.out.println("'Start Test' button is not clickable");
+			}
+		}
+
+//		for (int i = 0; i < allStartStatus.size(); i++) {
+//		    String buttonText = allStartStatus.get(i).getText();
+//		    System.out.println("Clicked on button with text: " + buttonText);
+//		    
+//		}
+//		    		    
+//		    if (buttonText.contains("Start Test")) {
+//		        // Click on the "Start Test" button
+//		        allStartStatus.get(i).click();
+
+		// Perform any actions after clicking the button
+
+		// Print the text of the button
+
+//		}
+
+//		}
+
+	}
+
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="java.lang.CharSequence"/>
+    <fullyQualifiedTypeName name="com.ninjaselenium.qa.pages.SearchPage"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="com.ninjaproject.qa.test.AllenDigitalLogin"/>
+    <fullyQualifiedTypeName name="com.ninjaselenium.qa.pages.AllenProfilePage"/>
+    <fullyQualifiedTypeName name="com.ninjaselenium.qa.pages.AllenTestPage"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBys"/>
+    <fullyQualifiedTypeName name="com.ninjaselenium.qa.pages.AllenLoginPage"/>
+    <fullyQualifiedTypeName name="com.ninjaproject.qa.test.LeftMenuClicked"/>
+    <fullyQualifiedTypeName name="com.ninjaselenium.qa.pages.LeftMenu"/>
+    <fullyQualifiedTypeName name="dev.failsafe.internal.util.Assert"/>
+    <fullyQualifiedTypeName name="org.testng.asserts.Assertion"/>
+    <fullyQualifiedTypeName name="javax.annotation.processing.SupportedSourceVersion"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.util.Duration"/>
+    <fullyQualifiedTypeName name="java.time.Duration"/>
+    <fullyQualifiedTypeName name="org.testng.annotations.AfterMethod"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.devtools.idealized.Javascript"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.PageFactory"/>
+    <fullyQualifiedTypeName name="com.testsigma.qa.pages.HomePage"/>
+    <fullyQualifiedTypeName name="com.testsigma.qa.test.HomePage"/>
+    <fullyQualifiedTypeName name="com.testsigma.qa.pages.HomePageWebelement"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.FindBy"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.edge.EdgeDriver"/>
+    <fullyQualifiedTypeName name="com.beust.jcommander.Parameters"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.firefox.FirefoxDriver"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="com.automation.qa.test.Register"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="org.testng.Assert"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="javax.xml.stream.events.StartDocument"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.core.db.DataSourceConnectionSource"/>
+    <fullyQualifiedTypeName name="org.testng.annotations.BeforeMethod"/>
+    <fullyQualifiedTypeName name="org.testng.annotations.Test"/>
+</qualifiedTypeNameHistroy>

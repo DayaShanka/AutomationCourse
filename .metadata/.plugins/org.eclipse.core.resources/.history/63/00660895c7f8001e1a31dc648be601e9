@@ -1,0 +1,82 @@
+package com.ninjaproject.qa.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.ninjaselenium.qa.base.Base;
+import com.ninjaselenium.qa.util.Utilities;
+
+public class Login extends Base { // Using inheritance of base class so that we can access their methods.
+
+	WebDriver driver; // Set globally so that use with all methods in this class
+
+	@AfterMethod
+	public void tearDown() { // it will call in end to close browser with every methods.
+
+		driver.close();
+		System.out.println("Browser Closed");
+	}
+
+	@BeforeMethod
+	public void setup() { // it will call in starting with every methods.
+
+		driver = initilizeBrowserAndOpenApplicationURL("chrome");
+		driver.findElement(By.xpath("//span[contains(text(), 'My Account')]")).click();
+		driver.findElement(By.linkText("Login")).click();
+	}
+
+	@Test(priority = 2)
+	public void verifyInvalidEmailAndPassword() throws InterruptedException {
+		Thread.sleep(4);
+		driver.findElement(By.id("input-email")).sendKeys(Utilities.generateEmailWithTimeStamp());
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		Assert.assertTrue(driver
+				.findElement(
+						By.xpath("//div[contains(text(), 'Warning: No match for E-Mail Address and/or Password.')]"))
+				.isDisplayed(), "Warning: No match for E-Mail Address and/or Password");
+		WebElement actualWarningMsg = driver.findElement(By.xpath("//div[contains(@class, 'alert-dismissible')]"));
+		System.out.println("Warning msg: " + actualWarningMsg.getText());
+
+	}
+
+	@Test(priority = 1)
+	public void verifyValidEmailAndPassword() {
+
+		driver.findElement(By.id("input-email")).sendKeys("daya.choubey.111@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		WebElement info = driver.findElement(By.linkText("Edit your account information"));
+		System.out.println("After Login: " + info.getText());
+		Assert.assertTrue(info.isDisplayed(), "Edit your account information");
+		Assert.assertTrue(driver.findElement(By.linkText("Qafox.com")).isDisplayed(), "Qafox.com");
+
+		if (info.getText().equals("Edit your account information")) {
+			System.out.println("Test Passed Successfully");
+		} else {
+			System.out.println("Test Failed");
+		}
+
+	}
+
+	@Test(priority = 3)
+	public void verifyLogout() {
+
+		driver.findElement(By.id("input-email")).sendKeys("daya.choubey.111@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("123456");
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		driver.findElement(By.xpath("//span[contains(text(), 'My Account')]")).click();
+		driver.findElement(By.linkText("Logout")).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//h1[contains(text(), 'Account Logout')]")).getText(),
+				"Account Logout");
+		System.out.println(
+				driver.findElement(By.xpath("//h1[contains(text(), 'Account Logout')]")).getText() + " Successfully");
+
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.ninjaselenium.qa.pages;
+
+public class LoginPage {
+
+}
