@@ -3,8 +3,15 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
+      <class name="com.automation.qa.test.LoginAndLogout">
+        <methods>
+          <include name="loginUserWithCorrectEmailandPassword"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.automation.qa.test.LoginAndLogout -->
       <class name="com.automation.qa.test.Register">
         <methods>
+          <include name="registerUserWithExistingEmail"/>
           <include name="setup"/>
           <include name="registerUser"/>
         </methods>

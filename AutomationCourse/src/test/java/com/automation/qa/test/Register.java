@@ -26,7 +26,7 @@ public class Register extends Base {
 		driver.get("http://automationexercise.com");
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void registerUser() {
 
 		WebElement clickOnSignup = driver.findElement(By.xpath("//a[contains(@href,\"/login\")]"));
@@ -37,7 +37,7 @@ public class Register extends Base {
 		Assert.assertEquals(getTextOfSignUpPage, "New User Signup!");
 		System.out.println("Text should be visble :-" + visibiltyOfText.getText());
 		WebElement enterUserName = driver.findElement(By.xpath("//input[contains(@data-qa,\"signup-name\")]"));
-		enterUserName.sendKeys("DSC1111");
+		enterUserName.sendKeys("DSC111");
 		WebElement enterEmail = driver.findElement(By.xpath("//input[contains(@data-qa,\"signup-email\")]"));
 		enterEmail.sendKeys("daya.choubey.111@gmail.com");
 		WebElement clickOnSignupButton = driver.findElement(By.xpath("//button[contains(@data-qa,\"signup-button\")]"));
@@ -105,17 +105,42 @@ public class Register extends Base {
 		driver.findElement(By.xpath("//a[text()='Continue']")).click();
 //		WebElement loggedInAsUserName = driver
 //				.findElement(By.xpath("//a/text()[normalize-space() and contains(., 'Logged in as')] | //a/b/text()"));
-		WebElement loggedInAsUserName = driver.findElement(By.xpath("//b[text()='DSC1111']"));
+		WebElement loggedInAsUserName = driver.findElement(By.xpath("//b[text()='DSC111']"));
 		System.out.println("Expected Name of USER:- " + loggedInAsUserName.getText());
 		// WebElement deleteAccount =
 		// driver.findElement(By.xpath("//a[contains(@href,\"/delete_account\")]"));
 		// deleteAccount.click();
-		boolean deletedMessage = driver.findElement(By.xpath("//b[text()='Account Deleted!']")).isDisplayed();
-		if (deletedMessage == true) {
-			System.out.println("Account Deleted!");
-			driver.findElement(By.xpath("//a[text()='Continue']")).click();
-		}
+//		boolean deletedMessage = driver.findElement(By.xpath("//b[text()='Account Deleted!']")).isDisplayed();
+//		if (deletedMessage == true) {
+//			System.out.println("Account Deleted!");
+//			driver.findElement(By.xpath("//a[text()='Continue']")).click();
+//	}
 
+	}
+
+	@Test(priority = 2)
+	public void registerUserWithExistingEmail() {
+
+		WebElement clickOnSignup = driver.findElement(By.xpath("//a[contains(@href,\"/login\")]"));
+		clickOnSignup.click();
+		WebElement visibiltyOfText = driver.findElement(By.xpath("//h2[contains(text(),'New User Signup!')]"));
+		String getTextOfSignUpPage = visibiltyOfText.getText();
+		visibiltyOfText.isDisplayed();
+		Assert.assertEquals(getTextOfSignUpPage, "New User Signup!");
+		System.out.println("Text should be visble :-" + visibiltyOfText.getText());
+		WebElement enterUserName = driver.findElement(By.xpath("//input[contains(@data-qa,\"signup-name\")]"));
+		enterUserName.sendKeys("DSC1111");
+		WebElement enterEmail = driver.findElement(By.xpath("//input[contains(@data-qa,\"signup-email\")]"));
+		enterEmail.sendKeys("daya.choubey.1111@gmail.com");
+		WebElement clickOnSignupButton = driver.findElement(By.xpath("//button[contains(@data-qa,\"signup-button\")]"));
+		clickOnSignupButton.click();
+		WebElement visibilityOfErrorMessage = driver
+				.findElement(By.xpath("//form[contains(@action,\"/signup\")]//p['Email Address already exist!']"));
+		visibilityOfErrorMessage.isDisplayed();
+		if (visibilityOfErrorMessage.isDisplayed() == true) {
+
+			System.out.println("Getting Expected Message: -" + visibilityOfErrorMessage.getText());
+		}
 	}
 
 }
