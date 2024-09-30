@@ -6,8 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="validCredentialsSupplier"/>
+		<item key="selection" value="Account Deleted"/>
 		<list key="findhistory">
+			<item value="public void enterValidEmail(String emailText)"/>
+			<item value="WebElement monthSleect = driver.findElement(By.name(&quot;months&quot;));"/>
+			<item value="click();"/>
+			<item value="click"/>
+			<item value="// selection of list of checkboxes"/>
+			<item value="det"/>
+			<item value="Account Deleted"/>
+			<item value="public void enterPassword(String passwordText) {"/>
 			<item value="System.out.println(&quot;Success Message:- &quot; + driver"/>
 			<item value="WebElement fName = driver.findElement(By.id(&quot;first_name&quot;));"/>
 			<item value="if (selectCheckbox.size() &gt; 0) {"/>
@@ -15,14 +23,6 @@
 			<item value="browserName"/>
 			<item value="public AllenProfilePage(WebDriver driver) {"/>
 			<item value="driver"/>
-			<item value="HomePage"/>
-			<item value="testprop = new Properties();"/>
-			<item value="testPropFile"/>
-			<item value="FileInputStream"/>
-			<item value="enrollmentNo"/>
-			<item value="&#x09;public void setup() {"/>
-			<item value="LeftMenuClicked"/>
-			<item value="allenUrl"/>
 		</list>
 		<list key="replacehistory">
 		</list>
