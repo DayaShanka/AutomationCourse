@@ -16,7 +16,7 @@ public class Wait {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://sso.teachable.com/secure/9521/identity/login/password");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		WebDriverWait mywait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Declaration
+		WebDriverWait mywait = new WebDriverWait(driver, Duration.ofSeconds(5)); // explicity Declaration
 		WebElement waitElement = mywait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='Rahul Shetty Academy']")));
 		System.out.println(waitElement.isDisplayed());
