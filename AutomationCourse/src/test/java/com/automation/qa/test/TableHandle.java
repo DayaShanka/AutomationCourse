@@ -14,10 +14,10 @@ public class TableHandle {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://testautomationpractice.blogspot.com/");
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//tr"));
-		System.out.println("Total rows of table: " + rows.size());
+		System.out.println("Total number of rows: " + rows.size());
 
 		List<WebElement> cols = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//th"));
-		System.out.println("Total colum of table: " + cols.size());
+		System.out.println("Total number of colums: " + cols.size());
 		System.out.println(
 				"------------------------------------------------------------------------------------------------");
 
@@ -45,6 +45,33 @@ public class TableHandle {
 			System.out.println("");
 		}
 
+		// Sum of All the price List from the table
+		int total = 0;
+		List<WebElement> price = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//td[4]"));
+		for (WebElement totalPrice : price) {
+			String allpriceFromTable = totalPrice.getText();
+			total = total + Integer.parseInt(allpriceFromTable); // converting string to int
+
+		}
+		System.out.println("Sum of All the price List: " + total); // printing outside the loop so we can get the total
+																	// sum of price
+
+		// get the book name where author name ="Mukesh"
+
+		List<WebElement> AuthorName = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//td[2]"));
+		for (WebElement AllAuthorName : AuthorName) {
+			String getTheAuthor = AllAuthorName.getText();
+			System.out.println("Authors name is: " + getTheAuthor);
+
+			if (getTheAuthor.contains("Mukesh")) {
+
+				List<WebElement> BookName = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//td[1]"));
+				for (int row = 2; row <= BookName.size(); row++) {
+					BookName.get(row).getText();
+
+				}
+			}
+		}
 	}
 
 }
