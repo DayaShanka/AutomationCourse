@@ -16,7 +16,7 @@ public class JavaScriptTop10 {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		// • Scroll By Pixel
-		js.executeScript("window.scrollBy(0, 500)"); // Scroll down by 500 pixels
+		// js.executeScript("window.scrollBy(0, 500)"); // Scroll down by 500 pixels
 
 		// • Scroll to Specific Element
 		WebElement element = driver.findElement(
