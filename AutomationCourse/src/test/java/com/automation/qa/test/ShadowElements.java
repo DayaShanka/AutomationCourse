@@ -13,7 +13,7 @@ public class ShadowElements {
 		driver.get("https://books-pwakit.appspot.com/");
 		driver.manage().window().maximize();
 		// This Element is inside single shadow DOM.
-		// shadow host==>shadow root==>shadow element ----This can be repeat
+		// shadow host==>shadow root==>shadow element ---- This can be repeat
 		SearchContext shadow = driver.findElement(By.cssSelector("book-app[apptitle='BOOKS']")).getShadowRoot();
 		Thread.sleep(1000);
 		shadow.findElement(By.cssSelector("input")).sendKeys("welcome");
