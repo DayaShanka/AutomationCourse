@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class AddToCart {
 	// Method to retrieve the required username
@@ -115,6 +116,27 @@ public class AddToCart {
 		// clicking on "Cart" icon
 		WebElement clickOnCartIcon = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
 		clickOnCartIcon.click();
-		// driver.quit();
+
+		WebElement checkoutButton = driver.findElement(By.xpath("//button[@id='checkout']"));
+		checkoutButton.click();
+		driver.findElement(By.id("first-name")).sendKeys("Dev");
+		driver.findElement(By.id("last-name")).sendKeys("Pandey");
+		driver.findElement(By.id("postal-code")).sendKeys("802125");
+		driver.findElement(By.id("continue")).click();
+		driver.findElement(By.id("finish")).click();
+		WebElement completeOrder = driver.findElement(By.xpath("//h2[text()='Thank you for your order!']"));
+		System.out.println(completeOrder.getText());
+		Assert.assertEquals(completeOrder.getText(), "Thank you for your order!");
+
+		// click on continue without fill the form
+//		driver.findElement(By.id("continue")).click();
+//		WebElement errorMessage = driver
+//				.findElement(By.xpath("//h3[@data-test=\"error\" and text()='Error: First Name is required']"));
+//		Assert.assertEquals(errorMessage.getText(), "Error: First Name is required]");
+//		if (errorMessage.getText().equals("Error: First Name is required")) {
+//			System.out.println("All fields are required.");
+//		}
+
+		driver.quit();
 	}
 }
