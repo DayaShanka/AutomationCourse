@@ -12,69 +12,36 @@ public class PaginationTable {
 	public static void main(String[] args) throws InterruptedException {
 
 		// Setup WebDriver and navigate to the page
-
 		WebDriver driver = new ChromeDriver();
-
 		driver.get("https://tablepress.org/demo/");
-
 		driver.manage().window().maximize();
 
 		// Define a locator for the "Next" button
+		WebElement next = driver.findElement(By.xpath("//button[@data-dt-idx=\"next\"]"));
 
-		WebElement next = driver
-				.findElement(By.xpath("//div[@class='dataTables_paginate paging_simple']//a[text()='Next']"));
-
+		System.out.println("First_Name: ");
 		// Loop until the "Next" button is disabled
-
-		while (next.isEnabled() == true) {
-
+		while (next.isEnabled()) {
 			Thread.sleep(2000);
 
-			List<WebElement> tableRow = driver.findElements(By.xpath("//tbody[@class='row-hover']//tr/td[1]"));
+			// Locate all rows on the current page
+			List<WebElement> tableRows = driver
+					.findElements(By.xpath("//tbody[@class='row-striping row-hover']//tr/td[1]"));
 
-			int getRSize = tableRow.size();
-
-			System.out.println("First_Name: ");
-
-			for (int r = 1; r <= getRSize; r++) {
-
-				WebElement rowData = driver.findElement(By.xpath("//tbody[@class='row-hover']//tr[" + r + "]//td[1]"));
-
-				String printRow = rowData.getText();
-
-				System.out.println(printRow);
-
-				// System.out.println("_________page_no: "+r);
-
+			// Print the first name in each row on the current page
+			for (WebElement rowData : tableRows) {
+				System.out.println(rowData.getText());
 			}
 
+			// Click "Next" and re-assign the "Next" button element
 			next.click();
+			Thread.sleep(2000); // Pause to allow the next page to load
 
-			// Click on the "Next" button
-
-			// printing row data
-
-			Thread.sleep(2000);
-
-			// Check for the next button again after the page updates
-
-			next = driver.findElement(By.xpath("//div[@class='dataTables_paginate paging_simple']//a[text()='Next']"));
-
-			// Add a delay to let the page load after each click
-
-			try {
-
-				Thread.sleep(2000); // Pause for 2 seconds to let the page load
-
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-
-			}
-			
-
+			// Re-locate the "Next" button to check if it’s enabled on the new page
+			next = driver.findElement(By.xpath("//button[@data-dt-idx=\"next\"]"));
 		}
 
+		System.out.println("No more pages to display.");
+		driver.quit();
 	}
-
 }

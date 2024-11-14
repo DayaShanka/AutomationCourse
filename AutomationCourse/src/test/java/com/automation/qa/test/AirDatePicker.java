@@ -66,6 +66,6 @@ public class AirDatePicker {
 		}
 
 		// Close the driver
-		// driver.quit();
+		driver.quit();
 	}
 }

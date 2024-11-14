@@ -22,7 +22,7 @@ public class BrokenLinkCheck {
 		driver.get("https://testautomationpractice.blogspot.com/");
 		driver.manage().window().maximize();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		TakesScreenshot ts = (TakesScreenshot) driver;
+		TakesScreenshot ts = (TakesScreenshot) driver; // to taking screenshort
 
 		List<WebElement> bknLinks = driver.findElements(By.xpath("//div[@id='broken-links']//a[@class='link']"));
 		WebElement brokenLinkArea = driver.findElement(By.xpath("//div[@id='broken-links']")); // to take screenshort

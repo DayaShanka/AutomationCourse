@@ -44,7 +44,7 @@ public class JavaScriptTop10 {
 
 		// • Set Value of an Input Field
 		WebElement inputField = driver.findElement(By.id("username"));
-		js.executeScript("arguments[0].value='new value';", inputField);
+		js.executeScript("arguments[0].value='Welcome';", inputField);
 
 		// • Zoom In and Zoom Out the Page
 		js.executeScript("document.body.style.zoom = '90%'"); // Zoom in to 90%

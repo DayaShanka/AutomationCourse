@@ -73,6 +73,8 @@ public class DateRangeToFrom {
 			}
 
 		}
+		System.out.println("Expected date selected");
+		driver.quit();
 	}
 
 }

@@ -37,6 +37,7 @@ public class Alerts {
 		Alert openWindowAlert = driver.switchTo().alert();
 		Thread.sleep(5);
 		openWindowAlert.accept();
+
 	}
 
 }

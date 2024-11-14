@@ -14,22 +14,22 @@ public class ActionOfMouse {
 		driver.get("https://demo.automationtesting.in/Datepicker.html");
 
 		// Find the 'SwitchTo' and 'Windows' elements
-		WebElement switchTo = driver.findElement(By.xpath("//a[@href=\"SwitchTo.html\" and text()='SwitchTo']"));
-		WebElement windows = driver.findElement(By.xpath("//a[@href=\"Windows.html\" and text()='Windows']"));
+		WebElement switchToAction = driver.findElement(By.xpath("//a[@href=\"SwitchTo.html\" and text()='SwitchTo']"));
+		WebElement windowsAction = driver.findElement(By.xpath("//a[@href=\"Windows.html\" and text()='Windows']"));
 
 		// Create Actions object to handle mouse actions
 		Actions action = new Actions(driver);
 
 		// Hover over the 'SwitchTo' menu to make the 'Windows' option visible
-		action.moveToElement(switchTo).perform();
+		action.moveToElement(switchToAction).perform();
 		Thread.sleep(2000); // Add a delay to ensure the menu is visible
 
 		// Now try to get the text of the 'Windows' element after hovering
-		String windowsText = windows.getText();
+		String windowsText = windowsAction.getText();
 		System.out.println("Text of the 'Windows' option: " + windowsText);
 
 		// Click on the 'Windows' option
-		action.moveToElement(windows).click().perform();
+		action.moveToElement(windowsAction).click().perform();
 
 		driver.quit();
 	}

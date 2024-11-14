@@ -51,6 +51,7 @@ public class DatePicker {
 		driver.findElement(By.xpath("//input[@id='datepicker']")).click();
 
 		selectExpectedDates(driver, "15", "December", "2023"); // expected dates with the help of method
+		System.out.println("Expected date selected from calendar");
 
 	}
 }

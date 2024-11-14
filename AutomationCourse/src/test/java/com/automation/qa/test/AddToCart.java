@@ -1,9 +1,11 @@
 package com.automation.qa.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -44,7 +46,7 @@ public class AddToCart {
 		return trimmedPassword;
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.saucedemo.com/");
 		driver.manage().window().maximize();
@@ -92,11 +94,14 @@ public class AddToCart {
 				System.out.println("Clicked Add to Cart for: " + itemName);
 				Thread.sleep(3000);
 
+				File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+				String screenshotPath = System.getProperty("user.dir") + "/screenshots/" + itemName + ".png";
+				FileUtils.copyFile(srcFile, new File(screenshotPath));
+				System.out.println("Screenshot taken for: " + itemName);
+
 			}
 		}
 
-		// WebElement eleItem =
-		// driver.findElement(By.xpath("//div[@class='inventory_item'][5]"));
 		WebElement eleItem = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='inventory_item'][5]")));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -128,7 +133,7 @@ public class AddToCart {
 		System.out.println(completeOrder.getText());
 		Assert.assertEquals(completeOrder.getText(), "Thank you for your order!");
 
-		// click on continue without fill the form
+// click on continue without fill the form
 //		driver.findElement(By.id("continue")).click();
 //		WebElement errorMessage = driver
 //				.findElement(By.xpath("//h3[@data-test=\"error\" and text()='Error: First Name is required']"));
