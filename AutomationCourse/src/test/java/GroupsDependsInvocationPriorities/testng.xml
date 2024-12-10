@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+	
+	<groups>
+      <run>
+        <include name="sanity" />  <!-- as per mentioned name in the group, it will execute that one-->
+        <include name="functional" />  <!-- as per mentioned name in the group, it will execute "smoke", "sanity", "functional"-->
+        <exclude name="smoke" />  <!-- skip the mentioned value-->
+      </run>
+    </groups>
+    <classes>
+      <class name="GroupsDependsInvocationPriorities.Groups"/>
+      <class name="GroupsDependsInvocationPriorities.Group2"/>
+        
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
