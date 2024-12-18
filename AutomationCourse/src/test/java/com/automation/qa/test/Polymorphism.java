@@ -2,7 +2,8 @@ package com.automation.qa.test;
 
 public class Polymorphism {
 
-	// overloading(we can create many method with same name but )
+	// overloading(we can create many method with same name but signature should be
+	// diff. )
 	int a, b = 10;
 
 	void sum() {

@@ -66,8 +66,9 @@ public class TableHandle {
 			if (getTheAuthor.contains("Mukesh")) {
 
 				List<WebElement> BookName = driver.findElements(By.xpath("//table[@name=\"BookTable\"]//td[1]"));
-				for (int row = 2; row <= BookName.size(); row++) {
-					BookName.get(row).getText();
+				for (int row = 2; row < BookName.size(); row++) {
+					String dd = BookName.get(row).getText();
+					System.out.println(dd);
 
 				}
 			}
