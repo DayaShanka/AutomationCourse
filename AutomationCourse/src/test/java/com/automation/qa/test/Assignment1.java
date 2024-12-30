@@ -1,6 +1,7 @@
 package com.automation.qa.test;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -50,7 +51,7 @@ public class Assignment1 {
 	}
 
 	@Test
-	void loginGmail() {
+	void loginGmail() throws InterruptedException {
 
 		driver.get("https://mail.google.com/");
 		driver.findElement(By.id("identifierId")).sendKeys(email);
@@ -62,25 +63,43 @@ public class Assignment1 {
 		WebElement composeMail = driver.findElement(By.xpath("//div[@class=\"T-I T-I-KE L3\"]"));
 		Actions action = new Actions(driver);
 		action.moveToElement(mail).click(composeMail).build().perform();
+		Thread.sleep(2000);
 		WebElement recipients = driver.findElement(By.xpath("//input[@class='agP aFw']"));
 		js.executeScript("arguments[0].value= '" + email + "';", recipients);
 		// driver.findElement(By.xpath("//div[@class='aoD hl']")).sendKeys(email);
 		driver.findElement(By.name("subjectbox")).sendKeys("Test Mail");
 		driver.findElement(By.xpath("//div[@class='Am aiL Al editable LW-avf tS-tW']")).sendKeys("Test Email Body");
 		driver.findElement(By.xpath("//button[@title=\"Close\"]")).click();
-		driver.findElement(By
-				.xpath("//div[@class='J-JN-M-I J-J5-Ji Xv L3 T-I-ax7 T-I T-I-Kq']//div[@class='J-J5-Ji J-JN-M-I-JG']"))
-				.click();
-		WebElement label = driver.findElement(By.xpath("//div[@id=':uj']"));
-		WebElement social = driver.findElement(By.xpath("//div[@title=\"Social\"]//div[@class='J-LC-Jo J-J5-Ji']"));
+		driver.findElement(By.xpath("//div[@data-tooltip=\"More options\"]")).click();
+		WebElement label = driver.findElement(By.xpath("//div[@id=':49y']"));
+		WebElement social = driver
+				.findElement(By.xpath("//div[@class='J-LC-Jz']//div//following::text()[. = 'Social']"));
 		action.moveToElement(label).click(social).build().perform();
 		WebElement clickOnSent = driver.findElement(By.xpath("//div[@id=':3gb']"));
 		clickOnSent.click();
 		WebElement SocialTab = driver.findElement(By.xpath("//div[@id=':2e']"));
-		wait.until(ExpectedConditions.textToBePresentInElement((WebElement) By.xpath("//div[@id=':2e']"), "Test Mail"));
 		SocialTab.click();
-		String subjectText = driver.findElement(By.xpath("//tr[@class='zA zE btb']//td[@id=':3e2']")).getText();
-		System.out.println(subjectText);
+		// Step 5: Verify Subject and Body
+
+		String subject = driver.findElement(By.xpath("//span[text()='Test Mail']")).getText();
+		List<WebElement> body = driver.findElements(By.xpath("//span[@class='Zt']//following::text()"));
+
+		for (WebElement bodyText : body) {
+			bodyText.getText();
+			if (bodyText.getText().contains("Test Email Body")) {
+				driver.findElement(By.xpath("//td[@class='apU xY']//span[@data-tooltip=\"Not starred\"]")).click();
+			}
+		}
+
+		// Assertions
+		System.out.println("Subject: " + subject);
+		System.out.println("Body: " + body);
+
+		if (subject.equals("Test Mail") && body.contains("Test Email Body")) {
+			System.out.println("Email verified successfully!");
+		} else {
+			System.out.println("Verification failed.");
+		}
 	}
 
 }

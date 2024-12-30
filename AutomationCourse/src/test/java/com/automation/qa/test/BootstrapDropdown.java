@@ -1,4 +1,4 @@
-package Dropdowns;
+package com.automation.qa.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class BootstrapDropdown {
 		List<String> optionsToSelect = new ArrayList<>();
 		optionsToSelect.add("HTML");
 		optionsToSelect.add("jQuery tutorial");
+		 System.out.println(optionsToSelect);
 
 		for (WebElement dropdown : drp) {
 			String option = dropdown.getText();

@@ -1,4 +1,4 @@
-package Dropdowns;
+package com.automation.qa.test;
 
 import java.util.List;
 

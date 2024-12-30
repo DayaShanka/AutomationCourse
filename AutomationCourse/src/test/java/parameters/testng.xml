@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Parallel Suite">
+<suite name="Parallel Suite" thread-count="5" parallel="tests">
 	
   <test name="edge Test">
-	<parameter name="browser" value="edge"/>
+	<parameter name="browser" value="edge"/>  <!-- this is for browser -->
+	<parameter name="url" value="https://www.kapruka.com/"/>  <!-- this is for url -->
     <classes>
-      <class name="parameters.ParallelTesting"/>
+      <class name="parameters.ParallelTestingWithMultiBrowserInXML"/>
     </classes>
   </test> <!-- Test -->
   
   <test name="chrome Test">
-	
 	<parameter name="browser" value="chrome"/>
+	<parameter name="url" value="https://www.kapruka.com/"/>
     <classes>
-      <class name="parameters.ParallelTesting"/>
+      <class name="parameters.ParallelTestingWithMultiBrowserInXML"/>
     </classes>
   </test> <!-- Test -->
   
   <test name="firefox Test">
-	
 	<parameter name="browser" value="firefox"/>
+	<parameter name="url" value="https://www.kapruka.com/"/>
     <classes>
-      <class name="parameters.ParallelTesting"/>
+      <class name="parameters.ParallelTestingWithMultiBrowserInXML"/>
     </classes>
   </test> <!-- Test -->
   

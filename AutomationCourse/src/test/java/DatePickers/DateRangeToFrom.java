@@ -10,19 +10,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 public class DateRangeToFrom {
 
-	public static void main(String[] args) {
-
+	@Test
+	@Parameters({ "email", "password" })
+	void mainMethod(String em, String pass) {
 		WebDriver driver = new ChromeDriver();
-		driver.get("https://allenpreprod.thinkexam.com/admin");
+		driver.get("https://allendigitaluat.thinkexam.com/admin");
 		driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		// Login process
-		driver.findElement(By.id("loginId")).sendKeys("ds@gmail.com");
-		driver.findElement(By.id("password")).sendKeys("123456");
+		driver.findElement(By.id("loginId")).sendKeys(em);
+		driver.findElement(By.id("password")).sendKeys(pass);
 		driver.findElement(By.id("loginSubmit")).click();
 
 		driver.findElement(By.xpath("//li[@id='mainmenu_Reports']//a")).click();

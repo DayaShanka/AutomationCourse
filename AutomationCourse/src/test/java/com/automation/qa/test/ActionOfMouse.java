@@ -31,6 +31,9 @@ public class ActionOfMouse {
 		// Click on the 'Windows' option
 		action.moveToElement(windowsAction).click().perform();
 
+		// we can use this also
+		// action.moveToElement(switchToAction).click(windowsAction).perform();
+
 		driver.quit();
 	}
 

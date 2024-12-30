@@ -17,9 +17,9 @@ public class ParallelTestingWithMultiBrowserInXML {
 
 	WebDriver driver;
 
-	@Parameters(value = { "browser" })
+	@Parameters(value = { "browser", "url" })
 	@BeforeMethod
-	void setup(String br) {
+	void setup(String br, String url) { // inputed the parameters so that can access value from XML
 
 		switch (br.toLowerCase()) {
 
@@ -37,27 +37,27 @@ public class ParallelTestingWithMultiBrowserInXML {
 			return;
 		}
 
-		driver.get("https://www.kapruka.com/");
+		driver.get(url);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
-	@Test
+	@Test(priority = 1)
 	void testLogo() {
 
 		boolean logoVisibility = driver.findElement(By.xpath("//img[@src=\"/static/image/send-online-logo.png?v5\"]"))
 				.isDisplayed();
 		Assert.assertEquals(logoVisibility, true);
-		System.out.println("Logo is visible");
+		System.out.println("Logo is visible on the page..");
 	}
 
-	@Test
+	@Test(priority = 2)
 	void testTitle() {
 
 		System.out.println("Title of the Page: " + driver.getTitle());
 	}
 
-	@Test
+	@Test(priority = 3)
 	void testURL() {
 
 		System.out.println("Current URL of the Page: " + driver.getCurrentUrl());
